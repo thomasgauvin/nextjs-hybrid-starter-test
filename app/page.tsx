@@ -9,9 +9,8 @@ export default async function Home() {
   const data = await response.json();
 
   const headersList = headers();
-  const clientPrincipal = atob(headersList.get('x-ms-client-principal') || '');
-
-
+  const clientPrincipal = atob(headersList.get('x-ms-client-principal') || '')
+  const json = JSON.parse(clientPrincipal)
 
   const timeOnServer = new Date().toLocaleTimeString('en-US');
   return (
@@ -22,7 +21,7 @@ export default async function Home() {
       </div>
       <CurrentTimeFromAPI />
       {JSON.stringify(data)}
-      {clientPrincipal}
+      {json.userId}
   </main>
   );
 }
