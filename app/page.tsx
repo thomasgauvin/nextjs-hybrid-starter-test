@@ -1,11 +1,17 @@
-import { unstable_noStore as noStore } from 'next/cache';
+import { cache } from 'react';
 import { CurrentTimeFromAPI } from './components/CurrentTimeFromAPI';
 import { headers } from 'next/headers'
 
-export default function Home() {
-  noStore();
+export const revalidate = 10;
+
+export default async function Home() {
+  const response = await fetch("http://worldtimeapi.org/api/timezone/America/New_York");
+  const data = await response.json();
+
   const headersList = headers();
   const clientPrincipal = atob(headersList.get('x-ms-client-principal') || '');
+
+
 
   const timeOnServer = new Date().toLocaleTimeString('en-US');
   return (
@@ -15,6 +21,7 @@ export default function Home() {
           hybrid rendering. The time on the server is <strong>{timeOnServer}</strong>.
       </div>
       <CurrentTimeFromAPI />
+      {JSON.stringify(data)}
       {clientPrincipal}
   </main>
   );
