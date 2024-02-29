@@ -4,7 +4,8 @@ import { headers } from 'next/headers'
 
 export default function Home() {
   noStore();
-  const headersList = headers()
+  const headersList = headers();
+  const clientPrincipal = atob(headersList.get('x-ms-client-principal') || '');
 
   const timeOnServer = new Date().toLocaleTimeString('en-US');
   return (
@@ -14,7 +15,7 @@ export default function Home() {
           hybrid rendering. The time on the server is <strong>{timeOnServer}</strong>.
       </div>
       <CurrentTimeFromAPI />
-      {headersList}
+      {clientPrincipal}
   </main>
   );
 }
