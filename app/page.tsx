@@ -8,10 +8,6 @@ export default async function Home() {
   const response = await fetch("http://worldtimeapi.org/api/timezone/America/New_York");
   const data = await response.json();
 
-  const headersList = headers();
-  const clientPrincipal = atob(headersList.get('x-ms-client-principal') || '')
-  const json = JSON.parse(clientPrincipal)
-
   const timeOnServer = new Date().toLocaleTimeString('en-US');
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -21,7 +17,6 @@ export default async function Home() {
       </div>
       <CurrentTimeFromAPI />
       {JSON.stringify(data)}
-      {json.userId}
   </main>
   );
 }
