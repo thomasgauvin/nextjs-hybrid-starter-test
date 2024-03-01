@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
+    "deploy": "next build && xcopy /s .next/static .next/standalone/.next/ && xcopy /s public .next/standalone/",
     "start": "next start",
     "lint": "next lint"
   },
