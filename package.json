@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "next build && xcopy /s .next/static .next/standalone/.next/ && xcopy /s public .next/standalone/",
     "start": "next start",
     "lint": "next lint"
   },
