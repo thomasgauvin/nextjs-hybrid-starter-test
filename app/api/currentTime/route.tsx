@@ -7,6 +7,6 @@ export async function GET() {
     // const clientPrincipal = atob(headersList.get('x-ms-client-principal') || '');
 
     return NextResponse.json({ 
-        message: `Hello from the API! The current time is ${currentTime}.`
+        message: `Hello from the API! The current time is ${currentTime}. `
     });
 }
